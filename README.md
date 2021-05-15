@@ -35,7 +35,7 @@ div p, section p {
   
 ## Notes
 1. Must be inside a `<style class="functions">` element.
-2. @@apply is for variables if `var()` is missing.
+2. `CssPointer` `.apply` is for variables if `var()` is missing.
   
 References:  
 @/BobobUnicorn, Chrome labs  
