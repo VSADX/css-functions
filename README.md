@@ -62,9 +62,9 @@ body {
 nav {
   display: grid;
   grid-template-columns: switch(--sizes, 
-    1fr, 
-    1fr 1fr 1fr, 
-    1fr 1fr 1fr 1fr);
+    1fr,                /** 0px - 720px */
+    1fr 1fr 1fr,        /** 720px - 1080px */
+    1fr 1fr 1fr 1fr);   /** +1080px */
 }
 ```
   
