@@ -8,7 +8,7 @@ It's not in browsers yet. This repo was inspireed by it.
 ```html
 <style class="functions">
   body {
-    background: random_color();
+    background: random-color();
   }
 </style>
 ```
@@ -16,7 +16,7 @@ It's not in browsers yet. This repo was inspireed by it.
 **You can give them params:**
 ```css
 div > p {
-  font-size: pick_random(.8em, 1em, 1.2em);
+  font-size: pick(.8em, 1em, 1.2em);
 }
 ```
   
