@@ -23,13 +23,13 @@ div > p {
 **Functions will be able to use variables:**
 ```css
 div {
-  --morning: false;
+  --semantic: false;
 }
 section {
-  --morning: true;
+  --semantic: true;
 }
 div p, section p {
-  color: if(--morning, red, blue);
+  color: if(--semantic, black, red);
 }
 ```
   
