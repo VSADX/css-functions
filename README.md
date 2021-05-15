@@ -36,6 +36,7 @@ div p, section p {
 ## Notes
 1. Must be inside a `<style class="functions">` element.
 2. API will change soon.
+3. @@apply is for variables if `var()` is missing.
   
 References:  
 @/BobobUnicorn, Chrome labs  
