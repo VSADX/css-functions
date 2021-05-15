@@ -20,6 +20,19 @@ div > p {
 }
 ```
   
+**Functions will be able to use variables:**
+```css
+div {
+  --num: false;
+}
+section {
+  --num: true;
+}
+div p, section p {
+  color: if(--num, red, blue);
+}
+```
+  
 ## Notes
 1. Must be inside a `<style class="functions">` element.
 2. API will change soon.
