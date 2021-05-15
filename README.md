@@ -68,6 +68,35 @@ nav {
 }
 ```
   
+## Writing a custom function for your CSS
+**Import `customFunctions` then `.add(fn)` the new function.**
+```js
+import { customFunctions } from "css-functions.js"
+
+customFunctions.add(pointer => {
+  const color_choices = ["red","blue","green"]
+  const num = Math.floor(Math.random() * color_choices.length)
+  return color_choices[num]
+}, "random-color")
+```
+This adds the `color: random-color();` function. It can be used 
+anywhere in CSS that takes a color name.
+  
+**The `pointer` parameter.**
+When you add a function, that code will run anytime you use the function in CSS!  
+Your function will get passed one parameter. It's a `CssPointer` from the `css-helper-class.js` 
+file.  
+  
+Take a look at the file, or download to see how it works.
+  
+## Using the `CssPointer` class.
+When your function runs, the CssPointer has details on the CSS near your function. 
+what details?
+1. `.selector` like `.card heading h3`
+2. `.property` the property name where you used your function `font-size`
+3. `.elements` the elements on the page that match the selector
+4. `.params` a list of params passed to your function if `rgb(12, 200, 30)` then `["12", "200", "30"]`
+5. `.placeholder` **not often needed** this is the generated CSS variable that will replace your function.
   
 ## Notes
 1. Must be inside a `<style class="functions">` element.
