@@ -1,8 +1,11 @@
-# CSS Functions  
-Add custom functions to your CSS. Add to the built-in list of var(), rgba(), or calc().  
+# Add functions to CSS (an API)  
   
-This feature is coming to CSS. It's part of the [CSS Houdini API](https://developer.mozilla.org/en-US/docs/Web/Houdini). 
+<br>  
+  
+This feature is coming to CSS.  It's part of the [CSS Houdini API](https://developer.mozilla.org/en-US/docs/Web/Houdini).  
 It's not in browsers yet. This repo was inspired by it.
+  
+<br>  
   
 **Custom functions look like this:**
 ```html
@@ -33,7 +36,29 @@ div p, section p {
 }
 ```
   
-## Why use `custom functions` in CSS?
+## How does it work?
+🌌 **What are custom functions?**  
+It's a `func()` just like `calc()` or `rgb()`, inside your CSS.  
+    
+
+🌄 **What does it do?**  
+Custom functions has two important purposes.
+1. It can help you write less complicated CSS.
+2. It adds wholey new features to CSS.
+When you use a custom function, the function generates additional 
+CSS, small or large, as long as that custom function is defined in 
+JS using this API. 
+  
+🌆 **How does it work?**  
+This JavaScript library doesn't add any specific functions, but provides an API 
+to allow you to create your own - or use others. By default, it only generates 
+CSS, so running your custom functions won't create expensive JS payloads.  
+It works by scanning your document for `<style>` elements that have `class="functions"`.
+  
+<br>  
+  
+
+## Why use custom functions in CSS?
   
 Using CSS selectors to set HTML attributes:
 ```css
@@ -89,16 +114,16 @@ file.
   
 Take a look at the file, or download to see how it works.
   
-## Using the `CssPointer` class.
-When your function runs, the CssPointer has details on the CSS near your function. 
-what details?
+## Writing advanced CSS functions *shouldn't be hard*.
+When your function runs, the CssPointer has key details on your CSS where your function was called. 
+Here's the properties:  
 1. `.selector` like `.card heading h3`
 2. `.property` the property name where you used your function `font-size`
 3. `.elements` the elements on the page that match the selector
 4. `.params` a list of params passed to your function if `rgb(12, 200, 30)` then `["12", "200", "30"]`
 5. `.placeholder` **not often needed** this is the generated CSS variable that will replace your function.
   
-## Notes
+Notes:  
 1. Must be inside a `<style class="functions">` element.
 2. `CssPointer` `.apply` is for variables if `var()` is missing.
   
