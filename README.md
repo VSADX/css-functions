@@ -2,7 +2,7 @@
 Add custom functions to your CSS. Add to the built-in list of var(), rgba(), or calc().  
   
 This feature is coming to CSS. It's part of the [CSS Houdini API](https://developer.mozilla.org/en-US/docs/Web/Houdini). 
-It's not in browsers yet. This repo was inspireed by it.
+It's not in browsers yet. This repo was inspired by it.
   
 **Custom functions look like this:**
 ```html
@@ -16,7 +16,7 @@ It's not in browsers yet. This repo was inspireed by it.
 **You can give them params:**
 ```css
 div > p {
-  font-size: pick(.8em, 1em, 1.2em);
+  font-size: rand(.8em, 1em, 1.2em);
 }
 ```
   
@@ -32,6 +32,42 @@ div p, section p {
   color: if(--num, red, blue);
 }
 ```
+  
+## Why use `custom functions` in CSS?
+  
+Using CSS selectors to set HTML attributes:
+```css
+a {
+  /** sets target="_blank" on all <a> elements */
+  --target: aria("_blank");
+  --role: aria("button");
+}
+```
+  
+Edit HTML to turn text into spans to animate:
+```css
+.spooky {
+  --delay: animate-letters(.5, 4);
+}
+.spooky > span {
+  animation: spook-text 4s ease-in-out var(--delay) infinite;
+}
+```
+  
+Add many media queries options in one line:
+```css
+body {
+  --sizes: width(720px, 1080px);
+}
+nav {
+  display: grid;
+  grid-template-columns: switch(--sizes, 
+    1fr, 
+    1fr 1fr 1fr, 
+    1fr 1fr 1fr 1fr);
+}
+```
+  
   
 ## Notes
 1. Must be inside a `<style class="functions">` element.
