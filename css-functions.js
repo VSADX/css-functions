@@ -10,7 +10,7 @@ export const customFunctions = {
      * #param {boolean} global_or_parameterized 
      */
     add(func, optional_name = "") {
-        func.regex = new RegExp(`(;|,|\\b)${optional_name || func.name}\\s*\\(\\s*(['"]?)(.+?)\\2\s*\\)(;|,|!|\\b|$)`)
+        func.regex = new RegExp(`(;|,|\\b)${optional_name || func.name}\\s*\\(\\s*(['"]?)(.+?)\\2\\s*\\)(;|,|!|\\b|$)`)
         this.functions.push(func)
     },
     run(doc = document) {
