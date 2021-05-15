@@ -42,7 +42,7 @@ It's a `func()` just like `calc()` or `rgb()`, inside your CSS.
     
 
 🌄 **What does it do?**  
-Custom functions has two important purposes.
+Custom functions have two important purposes.
 1. It can help you write less complicated CSS.
 2. It adds wholey new features to CSS.
 When you use a custom function, the function generates additional 
@@ -123,7 +123,7 @@ Here's the properties:
 4. `.params` a list of params passed to your function if `rgb(12, 200, 30)` then `["12", "200", "30"]`
 5. `.placeholder` **not often needed** this is the generated CSS variable that will replace your function.
   
-Notes:  
+Notes: 
 1. Must be inside a `<style class="functions">` element.
 2. `CssPointer` `.apply` is for variables if `var()` is missing.
   
