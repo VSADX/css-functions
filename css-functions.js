@@ -1,3 +1,5 @@
+import { CssPointer } from "./css-helper-class.js"
+
 export const customFunctions = {
     /** 
      * @private
@@ -5,7 +7,7 @@ export const customFunctions = {
      */
     functions: [],
     /** 
-     * @param {(str = "", is_new_style_sheet = false, style_sheet: HTMLStyleElement) => str} func 
+     * @param {(pointer: CssPointer) => void} func 
      * @param {string} optional_name
      * #param {boolean} global_or_parameterized 
      */
@@ -30,32 +32,23 @@ customFunctions.run()
  * - look at a part of a stylesheet to see if a function is used in it.
  * - if found, run the function assoc.'d.
  * - use CSS var(--) pointers to allow for slotted / computed CSS values.
- *     
- * WARN: **The cb function spec is not approved.**
- * - predicate provided parameters: failed approval
- * - predicate expected return: failed approval
- * - tuple objects must be converted to classes  
  *   
- * NOTES: *Create a class as an options object*
- * - provide class objects as predicate params
- * - add helper methods to class objects (see 1.1 css-functions.js)
- *   
- * @version ALPHA 1.2.0.0
+ * @version ALPHA 1.5.0.0
  * @param {HTMLStyleElement} style 
  * @param {{regex: RegExp}} fn 
  * @param {number} start 
  */
-function execute(style, fn, start) {
+function execute(style, fn, start = 0) {
     const parts = fn.regex.exec(style.innerHTML.substr(start))
     if(!parts) return false
 
-    const content = parts[3]
-    const css_var = fn(content, { style, start, parts })
+    const pointer = new CssPointer(style, parts, start)
+    const {key, end, index} = pointer.private
     
-    const old_end = start + parts.index + parts[0].length 
-    const insert = `${style.innerHTML.substr(0, start + parts.index)}var(${css_var});`
+    const result = fn(pointer)
+    if(result) pointer.private.set(result)
     
-    style.innerHTML = `${insert}${style.innerHTML.substr(old_end)}`
-    
+    const insert = `${style.innerHTML.substr(0, index)}var(${key});`
+    style.innerHTML = `${insert}${style.innerHTML.substr(end)}`
     return insert.length
 }
